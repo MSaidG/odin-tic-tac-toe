@@ -47,11 +47,6 @@ const Gameboard = (function() {
         let corners = [0, 2, 6, 8];
         let edges = [1, 3, 5, 7];
         let center = 4;
-        console.log(`center: ${gameBoard[center]}`);
-        console.log(`2, 4: ${gameBoard[2]} ${gameBoard[4]}`);
-        console.log(`2, 4: ${gameBoard[2] === gameBoard[4] ? "ayni" : "farkli"}`);
-        console.log(`0, 3: ${gameBoard[0] === gameBoard[3] ? "ayni" : "farkli"}`);
-        console.log(`7, 8: ${gameBoard[7] === gameBoard[8] ? "ayni" : "farkli"}`);
         if ((gameBoard[0] !== "" && gameBoard[0] === gameBoard[8] || gameBoard[2] !== "" && gameBoard[2] === gameBoard[6] || gameBoard[1] !== "" && gameBoard[1] === gameBoard[7] || gameBoard[3] !== "" && gameBoard[3] === gameBoard[5]) && gameBoard[center] === "") return center;
         if ((gameBoard[1] !== "" && gameBoard[1] === gameBoard[2] || gameBoard[4] !== "" && gameBoard[4] === gameBoard[8] || gameBoard[3] !== "" && gameBoard[3] === gameBoard[6]) && gameBoard[0] === "") return 0;
         if ((gameBoard[1] !== "" && gameBoard[1] === gameBoard[0] || gameBoard[4] !== "" && gameBoard[4] === gameBoard[6] || gameBoard[5] !== "" && gameBoard[5] === gameBoard[8]) && gameBoard[2] === "") return 2;
@@ -62,7 +57,6 @@ const Gameboard = (function() {
         if ((gameBoard[8] !== "" && gameBoard[8] === gameBoard[2] || gameBoard[4] !== "" && gameBoard[4] === gameBoard[3]) && gameBoard[5] === "") return 5;
         if ((gameBoard[6] !== "" && gameBoard[6] === gameBoard[8] || gameBoard[4] !== "" && gameBoard[4] === gameBoard[1]) && gameBoard[7] === "") return 7;
 
-        console.log("HEEY");
 
 
         for (let i = 0; i < 4; i++)
