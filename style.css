@@ -7,6 +7,14 @@ h1 {
     text-align: center;
 }
 
+.selected-side {
+    background-color: teal;
+}
+
+.selected-difficulty {
+    background-color: tomato;
+}
+
 .context {
 
     max-width: 100vw;
@@ -23,20 +31,26 @@ h1 {
 .game {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
 }
 
-.x {
+
+
+#x, #random {
     border: solid;
     flex-grow: 1;
+    flex-basis: 0;
+
 }
 
-.o {
+#o, #unbeatable {
     border: solid;
     flex-grow: 1;
+    flex-basis: 0;
+
 }
 
-.select {
+.select, .difficulty {
     display: flex;
     gap: 5px;
 }
