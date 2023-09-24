@@ -42,12 +42,17 @@ const DisplayController = (function() {
 
 
 
+
+
+
 let gameBoard = [];
 let player = createPlayer("You", "X");
 let ai = createPlayer("AI", "O");
 
 const x_btn = document.querySelector(".x");
 const o_btn = document.querySelector(".o");
+const winText = document.querySelector("h1");
+
 
 x_btn.addEventListener("click", function(){
 
@@ -78,17 +83,11 @@ cells.forEach( element => {
         {
             element.textContent = sign;
             gameBoard[+element.id] = sign;
-            checkGameState(player.getName()); 
+            if (checkGameState(player.getName())) return;
             ai.move();
-            checkGameState(ai.getName()); 
+            if(checkGameState(ai.getName())) return;
         }
 
-        for (let i = 0; i < 9; i++)
-        {
-            console.log(`${i}, ${gameBoard[i]}`);
-        }
-
-        console.log("-----");
         
     });
 });
@@ -106,9 +105,6 @@ function resetGame() {
 
 function checkGameState(turn) {
 
-    console.log(turn);
-    console.log(gameBoard[0]);
-
     if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2] && gameBoard[0] !== ""
         ||gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6] && gameBoard[0] !== ""
         ||gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8] && gameBoard[0] !== ""
@@ -119,16 +115,28 @@ function checkGameState(turn) {
     {
         if (turn === "You") 
         {
-            console.log("You win!")
-            resetGame();
+            winText.textContent = "You Win!";
+            setTimeout(function() {
+                winText.textContent = "";
+            }, 3000)
+
+            setTimeout(resetGame, 3000);
+
+
         }
-        else
+        else if (turn === "AI")
         {
-            console.log("You lost!")
-            resetGame();
+            winText.textContent = "You Lost!";
+            setTimeout(function() {
+                winText.textContent = "";
+            }, 3000)
+
+            setTimeout(resetGame, 3000);
+
+
         }
 
-
+        return true;
     }
 
     let count = 0;
@@ -139,11 +147,17 @@ function checkGameState(turn) {
             count++;
             if (count === 9)
             {
-                resetGame();
-                console.log("reset");
+                winText.textContent = "It's a tie!";
+                setTimeout(function() {
+                    winText.textContent = "";
+                }, 3000)
+    
+                setTimeout(resetGame, 3000);
             }
         }
     }
+
+    return false;
 }
 
 
